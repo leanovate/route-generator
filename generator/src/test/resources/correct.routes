@@ -1,0 +1,9 @@
+# Some comment
+
+package de.leonovate.testing.testy
+
+GET         /test              TestController.action()
+
+POST        /test              @TestController.dynamicAction()
+
+GET         /test/:name        TestController.getDetail(42, "Something", name)
