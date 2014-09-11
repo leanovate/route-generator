@@ -7,4 +7,10 @@ public class ValueActionParameter extends ActionParameter {
 
         this.value = value;
     }
+
+    @Override
+    public String getJavaParameter(final int depth) {
+
+        return value;
+    }
 }

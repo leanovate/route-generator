@@ -1,20 +1,20 @@
 package de.leanovate.router;
 
-public class RouteMatchingContext<T> {
+public class RouteMatchingContext<Q,R> {
     public final String path;
 
     public final String method;
 
-    public final RequestAdapter<T> request;
+    public final RequestAdapter<Q,R> request;
 
-    public RouteMatchingContext(final String path, final String method, final RequestAdapter<T> request) {
+    public RouteMatchingContext(final String path, final String method, final RequestAdapter<Q,R> request) {
 
         this.path = path;
         this.method = method;
         this.request = request;
     }
 
-    public RouteMatchingContext<T> withPath(final String newPath) {
+    public RouteMatchingContext<Q,R> withPath(final String newPath) {
 
         return new RouteMatchingContext<>(newPath, method, this.request);
     }

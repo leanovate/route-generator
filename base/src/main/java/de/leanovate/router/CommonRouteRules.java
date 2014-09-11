@@ -6,7 +6,7 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public class CommonRouteRules {
-    public static <T> boolean prefix(RouteMatchingContext<T> context, String prefix,
+    public static <Q,R> boolean prefix(RouteMatchingContext<Q,R> context, String prefix,
             Function<RouteMatchingContext, Boolean> onMatch) {
 
         if (context.path.startsWith(prefix)) {
@@ -16,7 +16,7 @@ public class CommonRouteRules {
         }
     }
 
-    public static <T> boolean end(RouteMatchingContext<T> context, Function<RouteMatchingContext, Boolean> onMatch) {
+    public static <Q,R> boolean end(RouteMatchingContext<Q,R> context, Function<RouteMatchingContext, Boolean> onMatch) {
 
         if (context.path.isEmpty() || "/".equals(context.path)) {
             return onMatch.apply(context.withPath(""));
@@ -25,7 +25,7 @@ public class CommonRouteRules {
         }
     }
 
-    public static <T> boolean stringSegment(RouteMatchingContext<T> context,
+    public static <Q,R> boolean stringSegment(RouteMatchingContext<Q,R> context,
             BiFunction<RouteMatchingContext, String, Boolean> onMatch) {
 
         int begin = 0;
@@ -44,13 +44,13 @@ public class CommonRouteRules {
         }
     }
 
-    public static <T> boolean remaining(RouteMatchingContext<T> context,
+    public static <Q,R> boolean remaining(RouteMatchingContext<Q,R> context,
             BiFunction<RouteMatchingContext, String, Boolean> onMatch) {
 
         return onMatch.apply(context.withPath(""), context.path);
     }
 
-    public static <T> boolean method(RouteMatchingContext<T> context, String method,
+    public static <Q,R> boolean method(RouteMatchingContext<Q,R> context, String method,
             Function<RouteMatchingContext, Boolean> onMatch) {
 
         if (method.equalsIgnoreCase(context.method)) {
@@ -60,12 +60,12 @@ public class CommonRouteRules {
         }
     }
 
-    public static <T> Optional<String> stringQuery(RouteMatchingContext<T> context, String name) {
+    public static <Q,R> Optional<String> stringQuery(RouteMatchingContext<Q,R> context, String name) {
 
         return context.request.getQueryParam(name);
     }
 
-    public static <T> OptionalInt intQuery(RouteMatchingContext<T> context, String name) {
+    public static <Q,R> OptionalInt intQuery(RouteMatchingContext<Q,R> context, String name) {
 
         return context.request.getQueryParam(name)
                 .map((str) -> OptionalInt.of(Integer.parseInt(str))).orElse(OptionalInt.empty());

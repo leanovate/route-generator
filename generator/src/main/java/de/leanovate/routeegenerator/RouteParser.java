@@ -25,6 +25,7 @@ import de.leanovate.routeegenerator.model.PathRoutePattern;
 import de.leanovate.routeegenerator.model.PrefixRoutePattern;
 import de.leanovate.routeegenerator.model.QueryActionParameter;
 import de.leanovate.routeegenerator.model.RemainingRoutePattern;
+import de.leanovate.routeegenerator.model.RequestActionParameter;
 import de.leanovate.routeegenerator.model.RouteRule;
 import de.leanovate.routeegenerator.model.SegementRoutePattern;
 import de.leanovate.routeegenerator.model.ValueActionParameter;
@@ -127,7 +128,7 @@ public class RouteParser {
                 elem('/'),
                 elem(':'),
                 javaIdent()
-                       ).map((t) -> new SegementRoutePattern(t._1 + t._2 + t._3));
+                       ).map((t) -> new SegementRoutePattern(t._3));
     }
 
     public Parser<CharInput, PathRoutePattern> pathRemain() {
@@ -136,7 +137,7 @@ public class RouteParser {
                 elem('/'),
                 elem('*'),
                 javaIdent()
-                       ).map((t) -> new RemainingRoutePattern(t._1 + t._2 + t._3));
+                       ).map((t) -> new RemainingRoutePattern(t._3));
     }
 
     public Parser<CharInput, ControllerAction> controllerAction() {
@@ -175,6 +176,7 @@ public class RouteParser {
         return firstOf(
                 valueActionParameter(),
                 queryActionParameter(),
+                requestActionParameter(),
                 pathActionParameter()
                       );
     }
@@ -182,6 +184,11 @@ public class RouteParser {
     public Parser<CharInput, ActionParameter> valueActionParameter() {
 
         return firstOf(numberLiteral(), stringLiteral()).map(ValueActionParameter::new);
+    }
+
+    public Parser<CharInput, ActionParameter> requestActionParameter() {
+
+        return keyword("request").map((any) -> new RequestActionParameter());
     }
 
     public Parser<CharInput, ActionParameter> pathActionParameter() {

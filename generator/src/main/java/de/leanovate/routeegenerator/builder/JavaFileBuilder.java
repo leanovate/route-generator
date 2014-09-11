@@ -34,6 +34,7 @@ public class JavaFileBuilder implements Closeable {
 
     public void publicClass(final Consumer<JavaClassBuilder> body) {
 
+        out.println();
         out.println(String.format("public class %s {", className));
         body.accept(new JavaClassBuilder(out, IdentBuilder.DEFAULT_IDENT));
         out.println("}");
@@ -41,6 +42,7 @@ public class JavaFileBuilder implements Closeable {
 
     public void publicAbstractClass(final Consumer<JavaClassBuilder> body) {
 
+        out.println();
         out.println(String.format("public abstract class %s {", className));
         body.accept(new JavaClassBuilder(out, IdentBuilder.DEFAULT_IDENT));
         out.println("}");
@@ -50,5 +52,29 @@ public class JavaFileBuilder implements Closeable {
     public void close() throws IOException {
 
         out.close();
+    }
+
+    public static String makeClassName(String str) {
+
+        final StringBuilder result = new StringBuilder();
+        boolean upper = false;
+
+        for (char ch : str.toCharArray()) {
+            if (result.length() == 0) {
+                if (Character.isJavaIdentifierStart(ch)) {
+                    result.append(Character.toUpperCase(ch));
+                }
+            } else if (Character.isJavaIdentifierPart(ch)) {
+                if (upper) {
+                    result.append(Character.toUpperCase(ch));
+                    upper = false;
+                } else {
+                    result.append(ch);
+                }
+            } else {
+                upper = true;
+            }
+        }
+        return result.toString();
     }
 }

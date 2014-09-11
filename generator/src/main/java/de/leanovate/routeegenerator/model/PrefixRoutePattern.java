@@ -11,6 +11,12 @@ public class PrefixRoutePattern extends PathRoutePattern {
     }
 
     @Override
+    protected String getJavaRule(int depth) {
+
+        return String.format("prefix(ctx%d, \"%s\", (ctx%d) ->", depth, prefix, depth + 1);
+    }
+
+    @Override
     public int hashCode() {
 
         return Objects.hash(prefix);

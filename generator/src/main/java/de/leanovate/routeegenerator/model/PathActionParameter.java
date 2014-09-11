@@ -11,6 +11,12 @@ public class PathActionParameter extends ActionParameter {
     }
 
     @Override
+    public String getJavaParameter(final int depth) {
+
+        return name;
+    }
+
+    @Override
     public int hashCode() {
 
         return Objects.hash(name);

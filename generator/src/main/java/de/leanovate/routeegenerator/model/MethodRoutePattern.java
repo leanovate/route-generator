@@ -1,15 +1,29 @@
 package de.leanovate.routeegenerator.model;
 
+import de.leanovate.routeegenerator.builder.IdentBuilder;
+
 import java.util.Objects;
 
 public class MethodRoutePattern extends RoutePattern {
     public final String method;
+
     public final ControllerAction controllerAction;
 
     public MethodRoutePattern(final String method, final ControllerAction controllerAction) {
 
         this.method = method;
         this.controllerAction = controllerAction;
+    }
+
+    @Override
+    public void build(final IdentBuilder builder, final String delim, final int depth) {
+
+        builder.writeLine(String.format("%smethod(ctx%d, \"%s\", (ctx%d) -> {", delim, depth, method, depth + 1));
+        builder.ident((actionBuilder) -> {
+            controllerAction.build(actionBuilder, depth + 1);
+            actionBuilder.writeLine("return true;");
+        });
+        builder.writeLine("})");
     }
 
     @Override

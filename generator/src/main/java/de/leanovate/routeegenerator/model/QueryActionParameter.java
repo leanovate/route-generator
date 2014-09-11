@@ -12,4 +12,15 @@ public class QueryActionParameter extends ActionParameter {
         this.name = name;
         this.defaultValue = defaultValue;
     }
+
+    @Override
+    public String getJavaParameter(final int depth) {
+
+        return defaultValue
+                .map((value) ->
+                        String.format("ctx%d.request.getQueryParam(\"%s\").orElse(%s)", depth, name, value))
+                .orElseGet(() ->
+                        String.format("ctx%d.request.getQueryParam(\"%s\")", depth, name));
+
+    }
 }

@@ -11,6 +11,12 @@ public class SegementRoutePattern extends PathRoutePattern {
     }
 
     @Override
+    protected String getJavaRule(int depth) {
+
+        return String.format("stringSegment(ctx%d, (%s, ctx%d) ->", depth, name, depth + 1);
+    }
+
+    @Override
     public int hashCode() {
 
         return Objects.hash(name);

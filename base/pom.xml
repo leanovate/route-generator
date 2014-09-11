@@ -11,5 +11,18 @@
 
     <artifactId>base</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <optional>true</optional>
+        </dependency>
 
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-core</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+    </dependencies>
 </project>

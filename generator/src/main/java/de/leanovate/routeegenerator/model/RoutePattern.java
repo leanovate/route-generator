@@ -1,6 +1,7 @@
 package de.leanovate.routeegenerator.model;
 
-import java.util.List;
+import de.leanovate.routeegenerator.builder.IdentBuilder;
 
-public class RoutePattern {
+public abstract class RoutePattern {
+    public abstract void build(IdentBuilder builder, String delim, int depth);
 }

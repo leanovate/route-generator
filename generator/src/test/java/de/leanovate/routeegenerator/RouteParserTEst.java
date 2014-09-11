@@ -4,8 +4,10 @@ import static de.leanovate.routeegenerator.RouteRulesMatchers.hasPackage;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 
+import de.leanovate.routeegenerator.builder.JavaFileBuilder;
 import org.junit.Test;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -19,6 +21,12 @@ public class RouteParserTest {
         RouteRules routeRules = RouteParser.parse(correctRoutes);
 
         assertThat(routeRules, hasPackage(equalTo("de.leonovate.testing.testy")));
+
+        try (JavaFileBuilder javaFileBuilder =
+                     new JavaFileBuilder(new File("./target/testout"), "test", "TestParseSuccess")) {
+            routeRules.build(javaFileBuilder);
+        }
+
     }
 
     private String readResource(String resource) throws IOException {
