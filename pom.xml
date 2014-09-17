@@ -1,9 +1,15 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.leanovate.router</groupId>
     <artifactId>parent</artifactId>
     <version>0.3-SNAPSHOT</version>
     <packaging>pom</packaging>
+    <name>router</name>
+    <description>
+        Generic generator for http router bases on a route file similar to rails.
+        The generated classes are framework agnostic, whereas several adapters are already provided.
+    </description>
 
     <modules>
         <module>base</module>
@@ -22,9 +28,17 @@
         <url>https://github.com/leanovate/route-generator</url>
         <connection>scm:git:https://github.com/leanovate/route-generator.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/leanovate/route-generator.git</developerConnection>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
 
+    <developers>
+        <developer>
+            <id>untoldwind</id>
+            <name>Bodo Junglas</name>
+            <url>http://untoldwind.github.io/</url>
+        </developer>
+    </developers>
+    
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>

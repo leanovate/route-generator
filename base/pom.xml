@@ -7,7 +7,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>base</artifactId>
+    <artifactId>router-base</artifactId>
+    <name>router :: base</name>
 
     <dependencies>
         <dependency>
