@@ -32,18 +32,18 @@ public class JavaFileBuilder implements Closeable {
         out.println(String.format("import %s;", imp));
     }
 
-    public void publicClass(final Consumer<JavaClassBuilder> body) {
+    public void publicClass(final String extensions, final Consumer<JavaClassBuilder> body) {
 
         out.println();
-        out.println(String.format("public class %s {", className));
+        out.println(String.format("public class %s%s {", className, extensions));
         body.accept(new JavaClassBuilder(out, IdentBuilder.DEFAULT_IDENT));
         out.println("}");
     }
 
-    public void publicAbstractClass(final Consumer<JavaClassBuilder> body) {
+    public void publicAbstractClass(final String extensions, final Consumer<JavaClassBuilder> body) {
 
         out.println();
-        out.println(String.format("public abstract class %s {", className));
+        out.println(String.format("public abstract class %s%s {", className, extensions));
         body.accept(new JavaClassBuilder(out, IdentBuilder.DEFAULT_IDENT));
         out.println("}");
     }

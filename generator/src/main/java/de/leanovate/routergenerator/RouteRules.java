@@ -47,12 +47,14 @@ public class RouteRules {
     public void build(final JavaFileBuilder javaFileBuilder) {
 
         javaFileBuilder.addImport("de.leanovate.router.RouteMatchingContext");
+        javaFileBuilder.addImport("de.leanovate.router.Router");
         javaFileBuilder.addImport("static de.leanovate.router.CommonRouteRules.*");
 
+        String extensions = String.format(" implements Router<%s, %s>", requestClass, responseClass);
         if (dynamicControllers.isEmpty()) {
-            javaFileBuilder.publicClass(this::generateRouteMethod);
+            javaFileBuilder.publicClass(extensions, this::generateRouteMethod);
         } else {
-            javaFileBuilder.publicAbstractClass((classBuilder) -> {
+            javaFileBuilder.publicAbstractClass(extensions, (classBuilder) -> {
                 generateRouteMethod(classBuilder);
                 dynamicControllers.forEach((dynamicController) -> classBuilder
                         .protectedAbstractMethod(dynamicController, "get" + dynamicController, new String[0]));

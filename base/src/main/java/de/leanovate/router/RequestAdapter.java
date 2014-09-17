@@ -12,4 +12,9 @@ public interface RequestAdapter<Q, R> {
     Q getRequest();
 
     R getResponse();
+
+    default RouteMatchingContext<Q, R> createContext() {
+
+        return new RouteMatchingContext<>(getPath(), getMethod(), this);
+    }
 }
