@@ -9,6 +9,7 @@
         Generic generator for http router bases on a route file similar to rails.
         The generated classes are framework agnostic, whereas several adapters are already provided.
     </description>
+    <url>https://github.com/leanovate/route-generator</url>
 
     <modules>
         <module>base</module>
