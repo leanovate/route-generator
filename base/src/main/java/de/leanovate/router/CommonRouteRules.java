@@ -62,12 +62,12 @@ public class CommonRouteRules {
 
     public static <Q,R> Optional<String> stringQuery(RouteMatchingContext<Q,R> context, String name) {
 
-        return context.request.getQueryParam(name);
+        return context.getQueryParam(name);
     }
 
     public static <Q,R> OptionalInt intQuery(RouteMatchingContext<Q,R> context, String name) {
 
-        return context.request.getQueryParam(name)
+        return context.getQueryParam(name)
                 .map((str) -> OptionalInt.of(Integer.parseInt(str))).orElse(OptionalInt.empty());
     }
 }

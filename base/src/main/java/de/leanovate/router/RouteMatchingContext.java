@@ -1,21 +1,38 @@
 package de.leanovate.router;
 
-public class RouteMatchingContext<Q,R> {
+import java.util.Optional;
+
+public class RouteMatchingContext<Q, R> {
     public final String path;
 
     public final String method;
 
-    public final RequestAdapter<Q,R> request;
+    private final RequestAdapter<Q, R> adapter;
 
-    public RouteMatchingContext(final String path, final String method, final RequestAdapter<Q,R> request) {
+    public RouteMatchingContext(final String path, final String method, final RequestAdapter<Q, R> adapter) {
 
         this.path = path;
         this.method = method;
-        this.request = request;
+        this.adapter = adapter;
     }
 
-    public RouteMatchingContext<Q,R> withPath(final String newPath) {
+    public RouteMatchingContext<Q, R> withPath(final String newPath) {
 
-        return new RouteMatchingContext<>(newPath, method, this.request);
+        return new RouteMatchingContext<>(newPath, method, this.adapter);
+    }
+
+    public Optional<String> getQueryParam(String name) {
+
+        return adapter.getQueryParam(name);
+    }
+
+    public Q getRequest() {
+
+        return adapter.getRequest();
+    }
+
+    public R getResponse() {
+
+        return adapter.getResponse();
     }
 }

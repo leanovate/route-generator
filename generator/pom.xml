@@ -4,7 +4,7 @@
         <groupId>de.leanovate.router</groupId>
         <artifactId>parent</artifactId>
         <version>0.5-SNAPSHOT</version>
-
+        <relativePath>..</relativePath>
     </parent>
     <artifactId>router-generator</artifactId>
     <name>router :: generator</name>
