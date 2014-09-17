@@ -5,6 +5,8 @@ route-generator
 
 This is a very generic framework to use Rails-like (or Play framework like) http route files in any java-based web-framework of your choice, including (but not restricted to) plain old java servlets.
 
+Please note: This is a Java 8 project and will not work on Java 7 or lower.
+
 ## How it works
 
 Consider you have a class `SomethingController` like this:
