@@ -22,7 +22,7 @@
     <scm>
         <url>https://github.com/leanovate/route-generator</url>
         <connection>scm:git:https://github.com/leanovate/route-generator.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com:leanovate/route-generator.git</developerConnection>
+        <developerConnection>scm:git:ssh://git@github.com/leanovate/route-generator.git</developerConnection>
     </scm>
 
     <distributionManagement>
