@@ -2,6 +2,8 @@
 
 package de.leonovate.testing.testy
 
+GET        /                                        @RootResource.get(request)
+
 GET         /test              TestController.action(request)
 
 POST        /test              @TestController.dynamicAction(bla?, blub ?= "blubber")

@@ -144,10 +144,9 @@ public class RouteParser {
 
         return sequence(
                 elem('/'),
-                oneOrMoreOf(
+                zeroOrMoreOf(
                         (ch) -> (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') || (ch >= '0' && ch <= '9')
-                                || ch == '_' || ch == '-' || ch == '.' || ch == '*' || ch == '%',
-                        (ch) -> "expected uri path")
+                                || ch == '_' || ch == '-' || ch == '.' || ch == '*' || ch == '%')
                        ).map((t) -> new PrefixRoutePattern(t._1 + t._2));
     }
 
