@@ -6,8 +6,8 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public class CommonRouteRules {
-    public static <Q,R> boolean prefix(RouteMatchingContext<Q,R> context, String prefix,
-            Function<RouteMatchingContext, Boolean> onMatch) {
+    public static <Q, R> boolean prefix(RouteMatchingContext<Q, R> context, String prefix,
+            Function<RouteMatchingContext<Q,R>, Boolean> onMatch) {
 
         if (context.path.startsWith(prefix)) {
             return onMatch.apply(context.withPath(context.path.substring(prefix.length())));
@@ -16,7 +16,8 @@ public class CommonRouteRules {
         }
     }
 
-    public static <Q,R> boolean end(RouteMatchingContext<Q,R> context, Function<RouteMatchingContext, Boolean> onMatch) {
+    public static <Q, R> boolean end(RouteMatchingContext<Q, R> context,
+            Function<RouteMatchingContext<Q, R>, Boolean> onMatch) {
 
         if (context.path.isEmpty() || "/".equals(context.path)) {
             return onMatch.apply(context.withPath(""));
@@ -25,8 +26,8 @@ public class CommonRouteRules {
         }
     }
 
-    public static <Q,R> boolean stringSegment(RouteMatchingContext<Q,R> context,
-            BiFunction<RouteMatchingContext, String, Boolean> onMatch) {
+    public static <Q, R> boolean stringSegment(RouteMatchingContext<Q, R> context,
+            BiFunction<RouteMatchingContext<Q, R>, String, Boolean> onMatch) {
 
         int begin = 0;
 
@@ -44,14 +45,14 @@ public class CommonRouteRules {
         }
     }
 
-    public static <Q,R> boolean remaining(RouteMatchingContext<Q,R> context,
-            BiFunction<RouteMatchingContext, String, Boolean> onMatch) {
+    public static <Q, R> boolean remaining(RouteMatchingContext<Q, R> context,
+            BiFunction<RouteMatchingContext<Q, R>, String, Boolean> onMatch) {
 
         return onMatch.apply(context.withPath(""), context.path);
     }
 
-    public static <Q,R> boolean method(RouteMatchingContext<Q,R> context, String method,
-            Function<RouteMatchingContext, Boolean> onMatch) {
+    public static <Q, R> boolean method(RouteMatchingContext<Q, R> context, String method,
+            Function<RouteMatchingContext<Q, R>, Boolean> onMatch) {
 
         if (method.equalsIgnoreCase(context.method)) {
             return onMatch.apply(context);
@@ -60,12 +61,12 @@ public class CommonRouteRules {
         }
     }
 
-    public static <Q,R> Optional<String> stringQuery(RouteMatchingContext<Q,R> context, String name) {
+    public static <Q, R> Optional<String> stringQuery(RouteMatchingContext<Q, R> context, String name) {
 
         return context.getQueryParam(name);
     }
 
-    public static <Q,R> OptionalInt intQuery(RouteMatchingContext<Q,R> context, String name) {
+    public static <Q, R> OptionalInt intQuery(RouteMatchingContext<Q, R> context, String name) {
 
         return context.getQueryParam(name)
                 .map((str) -> OptionalInt.of(Integer.parseInt(str))).orElse(OptionalInt.empty());

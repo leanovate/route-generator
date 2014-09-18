@@ -38,6 +38,11 @@ public class RouterGeneratorMojo extends AbstractMojo {
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
 
+        if (!routesDirectory.exists() || !routesDirectory.isDirectory()) {
+            getLog().warn("Directory " + routesDirectory.getAbsolutePath() + " does not exists");
+            return;
+        }
+
         this.project.addCompileSourceRoot(output.getAbsolutePath());
 
         try {
