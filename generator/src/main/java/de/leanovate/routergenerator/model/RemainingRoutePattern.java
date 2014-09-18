@@ -11,6 +11,6 @@ public class RemainingRoutePattern extends PathRoutePattern {
     @Override
     protected String getJavaRule(int depth) {
 
-        return String.format("remaining(ctx%d, (%s, ctx%d) ->", depth, name, depth + 1);
+        return String.format("remaining(ctx%d, (ctx%d, %s) ->", depth, depth + 1, name);
     }
 }

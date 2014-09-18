@@ -234,6 +234,12 @@ public class RouteParser {
 
         return sequence(
                 javaIdent(),
+                opt(
+                        sequence(
+                                delim(':'),
+                                javaIdent()
+                                ).map((t) -> t._2)
+                   ),
                 delim('?'),
                 opt(
                         sequence(
@@ -241,7 +247,7 @@ public class RouteParser {
                                 firstOf(numberLiteral(), stringLiteral())
                                 ).map((t) -> t._2)
                    )
-                       ).map((t) -> new QueryActionParameter(t._1, t._3));
+                       ).map((t) -> new QueryActionParameter(t._1, t._2.orElse("string"), t._4));
     }
 
     public Parser<CharInput, String> javaIdent() {

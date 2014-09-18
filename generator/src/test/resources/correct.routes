@@ -2,10 +2,12 @@
 
 package de.leonovate.testing.testy
 
-GET        /                                        @RootResource.get(request)
+GET        /                  @RootResource.get(request)
 
-GET         /test              TestController.action(request)
+GET        /test              TestController.action(request)
 
-POST        /test              @TestController.dynamicAction(bla?, blub ?= "blubber")
+POST        /test             @TestController.dynamicAction(bla?, blub ?= "blubber")
 
-GET         /test/:name        TestController.getDetail(42, "Something", name)
+GET        /test/:name        TestController.getDetail(42, "Something", name)
+
+GET        /projects          @ProjectsResource.findAll(after?, limit:int?=500, request)

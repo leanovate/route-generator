@@ -7,7 +7,7 @@ import java.util.function.Function;
 
 public class CommonRouteRules {
     public static <Q, R> boolean prefix(RouteMatchingContext<Q, R> context, String prefix,
-            Function<RouteMatchingContext<Q,R>, Boolean> onMatch) {
+            Function<RouteMatchingContext<Q, R>, Boolean> onMatch) {
 
         if (context.path.startsWith(prefix)) {
             return onMatch.apply(context.withPath(context.path.substring(prefix.length())));
@@ -48,7 +48,11 @@ public class CommonRouteRules {
     public static <Q, R> boolean remaining(RouteMatchingContext<Q, R> context,
             BiFunction<RouteMatchingContext<Q, R>, String, Boolean> onMatch) {
 
-        return onMatch.apply(context.withPath(""), context.path);
+        if (!context.path.isEmpty() && context.path.charAt(0) == '/') {
+            return onMatch.apply(context.withPath(""), context.path.substring(1));
+        } else {
+            return onMatch.apply(context.withPath(""), context.path);
+        }
     }
 
     public static <Q, R> boolean method(RouteMatchingContext<Q, R> context, String method,
