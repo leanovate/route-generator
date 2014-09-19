@@ -5,6 +5,8 @@ import java.util.Objects;
 public class SegementRoutePattern extends PathRoutePattern {
     public final String name;
 
+    public String type = "string";
+
     public SegementRoutePattern(final String name) {
 
         this.name = name;
@@ -13,7 +15,7 @@ public class SegementRoutePattern extends PathRoutePattern {
     @Override
     protected String getJavaRule(int depth) {
 
-        return String.format("stringSegment(ctx%d, (ctx%d, %s) ->", depth, depth + 1, name);
+        return String.format("%sSegment(ctx%d, (ctx%d, %s) ->", type, depth, depth + 1, name);
     }
 
     @Override

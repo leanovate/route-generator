@@ -227,7 +227,14 @@ public class RouteParser {
 
     public Parser<CharInput, ActionParameter> pathActionParameter() {
 
-        return javaIdent().map(PathActionParameter::new);
+        return sequence(
+                javaIdent(),
+                opt(
+                        sequence(
+                                delim(':'),
+                                javaIdent()).map((t) -> t._2)
+                   )
+                       ).map((t) -> new PathActionParameter(t._1, t._2.orElse("string")));
     }
 
     public Parser<CharInput, ActionParameter> queryActionParameter() {

@@ -5,9 +5,12 @@ import java.util.Objects;
 public class PathActionParameter extends ActionParameter {
     public final String name;
 
-    public PathActionParameter(final String name) {
+    public final String type;
+
+    public PathActionParameter(final String name, final String type) {
 
         this.name = name;
+        this.type = type;
     }
 
     @Override

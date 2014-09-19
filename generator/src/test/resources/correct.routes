@@ -1,13 +1,16 @@
 # Some comment
 
+
+GET         /                  @RootResource.get(request)
+
+GET         /test              TestController.action(request)
+
+POST        /test              @TestController.dynamicAction(bla?, blub ?= "blubber")
+
+GET         /test/:name        TestController.getDetail(42, "Something", name)
+
+GET         /test2/:id         TestController.getDetail(42, "Something", id:int)
+
+GET         /projects          @ProjectsResource.findAll(after?, limit:int?=500, request)
+
 package de.leonovate.testing.testy
-
-GET        /                  @RootResource.get(request)
-
-GET        /test              TestController.action(request)
-
-POST        /test             @TestController.dynamicAction(bla?, blub ?= "blubber")
-
-GET        /test/:name        TestController.getDetail(42, "Something", name)
-
-GET        /projects          @ProjectsResource.findAll(after?, limit:int?=500, request)

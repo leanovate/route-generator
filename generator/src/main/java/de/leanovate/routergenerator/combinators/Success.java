@@ -46,12 +46,20 @@ public class Success<I extends Input, T> implements ParseResult<I, T> {
     @Override
     public <U> ParseResult<I, U> map(final Function<T, U> f) {
 
-        return new Success<>(f.apply(result), next);
+        try {
+            return new Success<>(f.apply(result), next);
+        } catch (RuntimeException e) {
+            return new Error<>(e.getMessage(), next);
+        }
     }
 
     @Override
     public <U> ParseResult<I, U> flatMapWithNext(final Function<T, ? extends Function<I, ParseResult<I, U>>> f) {
 
-        return f.apply(result).apply(next);
+        try {
+            return f.apply(result).apply(next);
+        } catch (RuntimeException e) {
+            return new Error<>(e.getMessage(), next);
+        }
     }
 }

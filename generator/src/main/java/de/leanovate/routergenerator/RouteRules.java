@@ -28,6 +28,8 @@ public class RouteRules {
 
     public void addRule(final RouteRule routeRule) {
 
+        routeRule.check();
+
         PathRoutePattern last = null;
         for (PathRoutePattern newPathRoutePattern : routeRule.pathRoutePatterns) {
             last = getOrAdd(last != null ? last.children : rootPatterns, newPathRoutePattern);
