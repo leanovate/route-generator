@@ -31,4 +31,8 @@ public abstract class PathRoutePattern extends RoutePattern {
     }
 
     protected abstract String getJavaRule(int depth);
+
+    public abstract String toUriTemplate();
+
+    public abstract void toUriBuilder(final IdentBuilder builder);
 }

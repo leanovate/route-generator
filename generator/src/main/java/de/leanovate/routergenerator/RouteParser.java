@@ -234,7 +234,7 @@ public class RouteParser {
                                 delim(':'),
                                 javaIdent()).map((t) -> t._2)
                    )
-                       ).map((t) -> new PathActionParameter(t._1, t._2.orElse("string")));
+                       ).map((t) -> new PathActionParameter(t._1, t._2.orElse("String")));
     }
 
     public Parser<CharInput, ActionParameter> queryActionParameter() {
@@ -254,7 +254,7 @@ public class RouteParser {
                                 firstOf(numberLiteral(), stringLiteral())
                                 ).map((t) -> t._2)
                    )
-                       ).map((t) -> new QueryActionParameter(t._1, t._2.orElse("string"), t._4));
+                       ).map((t) -> new QueryActionParameter(t._1, t._2.orElse("String"), t._4));
     }
 
     public Parser<CharInput, String> javaIdent() {

@@ -22,6 +22,11 @@ public class GenerateRoutesTask extends SourceTask {
             try (JavaFileBuilder javaFileBuilder = new JavaFileBuilder(out, routeRules.packageName, className)) {
                 routeRules.buildRouter(javaFileBuilder);
             }
+            String reverseClassName = "Reverse" + JavaFileBuilder.makeClassName(routesFile.getName());
+            try (JavaFileBuilder javaFileBuilder = new JavaFileBuilder(out, routeRules.packageName,
+                    reverseClassName)) {
+                routeRules.buildReverseRoutes(javaFileBuilder);
+            }
         }
     }
 

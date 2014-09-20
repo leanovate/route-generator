@@ -55,6 +55,11 @@ public class RouterGeneratorMojo extends AbstractMojo {
                 try (JavaFileBuilder javaFileBuilder = new JavaFileBuilder(output, routeRules.packageName, className)) {
                     routeRules.buildRouter(javaFileBuilder);
                 }
+                String reverseClassName = "Reverse" + JavaFileBuilder.makeClassName(routesFile.getName());
+                try (JavaFileBuilder javaFileBuilder = new JavaFileBuilder(output, routeRules.packageName,
+                        reverseClassName)) {
+                    routeRules.buildReverseRoutes(javaFileBuilder);
+                }
             }
         } catch (IOException e) {
             throw new MojoExecutionException("IOException", e);

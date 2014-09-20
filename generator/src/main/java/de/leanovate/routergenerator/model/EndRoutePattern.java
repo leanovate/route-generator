@@ -1,10 +1,23 @@
 package de.leanovate.routergenerator.model;
 
+import de.leanovate.routergenerator.builder.IdentBuilder;
+
 public class EndRoutePattern extends PathRoutePattern {
     @Override
     protected String getJavaRule(int depth) {
 
         return String.format("end(ctx%d, (ctx%d) ->", depth, depth + 1);
+    }
+
+    @Override
+    public String toUriTemplate() {
+
+        return "";
+    }
+
+    @Override
+    public void toUriBuilder(final IdentBuilder builder) {
+
     }
 
     @Override

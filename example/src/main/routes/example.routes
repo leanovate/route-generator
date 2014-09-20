@@ -1,5 +1,7 @@
 
-package de.leanovate.router.example
 
-GET        /example         ExampleController.index()
+GET         /example        ExampleController.index(offset:int?, limit:int?=500, response)
 POST        /example        ExampleController.create(request)
+GET         /example/:id    ExampleController.get(id, response)
+
+package de.leanovate.router.example

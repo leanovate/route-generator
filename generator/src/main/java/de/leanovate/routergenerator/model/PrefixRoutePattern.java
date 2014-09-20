@@ -1,5 +1,8 @@
 package de.leanovate.routergenerator.model;
 
+import com.sun.javafx.binding.StringFormatter;
+import de.leanovate.routergenerator.builder.IdentBuilder;
+
 import java.util.Objects;
 
 public class PrefixRoutePattern extends PathRoutePattern {
@@ -14,6 +17,18 @@ public class PrefixRoutePattern extends PathRoutePattern {
     protected String getJavaRule(int depth) {
 
         return String.format("prefix(ctx%d, \"%s\", (ctx%d) ->", depth, prefix, depth + 1);
+    }
+
+    @Override
+    public String toUriTemplate() {
+
+        return prefix;
+    }
+
+    @Override
+    public void toUriBuilder(final IdentBuilder builder) {
+
+        builder.writeLine(String.format(".path(\"%s\")", prefix));
     }
 
     @Override

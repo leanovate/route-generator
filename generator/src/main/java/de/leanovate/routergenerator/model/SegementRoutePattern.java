@@ -1,5 +1,7 @@
 package de.leanovate.routergenerator.model;
 
+import de.leanovate.routergenerator.builder.IdentBuilder;
+
 import java.util.Objects;
 
 public class SegementRoutePattern extends PathRoutePattern {
@@ -15,7 +17,19 @@ public class SegementRoutePattern extends PathRoutePattern {
     @Override
     protected String getJavaRule(int depth) {
 
-        return String.format("%sSegment(ctx%d, (ctx%d, %s) ->", type, depth, depth + 1, name);
+        return String.format("%sSegment(ctx%d, (ctx%d, %s) ->", type.toLowerCase(), depth, depth + 1, name);
+    }
+
+    @Override
+    public String toUriTemplate() {
+
+        return String.format("/{%s}", name);
+    }
+
+    @Override
+    public void toUriBuilder(final IdentBuilder builder) {
+
+        builder.writeLine(String.format(".segment(%s)", name));
     }
 
     @Override

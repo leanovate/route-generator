@@ -1,5 +1,7 @@
 package de.leanovate.routergenerator.model;
 
+import de.leanovate.routergenerator.builder.IdentBuilder;
+
 import java.util.Objects;
 
 public class PathActionParameter extends ActionParameter {
@@ -17,6 +19,22 @@ public class PathActionParameter extends ActionParameter {
     public String getJavaParameter(final int depth) {
 
         return name;
+    }
+
+    @Override
+    public String getReverseParameter() {
+
+        return type + " " + name;
+    }
+
+    @Override
+    public boolean isReverseParameter() {
+
+        return true;
+    }
+
+    @Override
+    public void toUriBuilder(final IdentBuilder builder) {
     }
 
     @Override
