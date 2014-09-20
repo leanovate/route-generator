@@ -33,6 +33,9 @@ public class RouteMatchingContext<Q, R> {
 
     /**
      * Create a sub context with new remaining path.
+     *
+     * @param newPath the new path of the sub-context (usually shortened by the already matched segements
+     * @return the sub-context
      */
     public RouteMatchingContext<Q, R> withPath(final String newPath) {
 
@@ -41,6 +44,9 @@ public class RouteMatchingContext<Q, R> {
 
     /**
      * Get an optional query parameter of the http request parameter.
+     *
+     * @param name the name of the query parameter
+     * @return optional value
      */
     public Optional<String> getQueryParam(String name) {
 
@@ -49,6 +55,8 @@ public class RouteMatchingContext<Q, R> {
 
     /**
      * Get the the http request object of the underlying framework.
+     *
+     * @return the http request of the underlying framework
      */
     public Q getRequest() {
 
@@ -57,6 +65,8 @@ public class RouteMatchingContext<Q, R> {
 
     /**
      * Get the the http response object of the underlying framework.
+     *
+     * @return the http response of the underlying framework
      */
     public R getResponse() {
 

@@ -16,6 +16,8 @@ public class CommonRouteRules {
      * @param prefix the prefix to match
      * @param onMatch callback if the prefix is matched, the callback will receive a sub-context without the matched
      * prefix
+     * @param <Q> the http request of the underlying framework
+     * @param <R> the http response of the underlying framework
      * @return {@code true} if the path matches the prefix and the {@code onMatch} callback returns {@code true} as well
      */
     public static <Q, R> boolean prefix(RouteMatchingContext<Q, R> context, String prefix,
@@ -34,6 +36,8 @@ public class CommonRouteRules {
      * @param context the current matching context
      * @param onMatch callback if the path does not contain any more segments, the callback will receive a sub-context
      * with an empty path
+     * @param <Q> the http request of the underlying framework
+     * @param <R> the http response of the underlying framework
      * @return {@code true} if the path matches and the {@code onMatch} callback returns {@code true} as well
      */
     public static <Q, R> boolean end(RouteMatchingContext<Q, R> context,
@@ -52,6 +56,8 @@ public class CommonRouteRules {
      * @param context the current matching context
      * @param onMatch callback if the path contains a non-empty path-segment, the callback will receive the extracted
      * string-value as well a context without the matched segment
+     * @param <Q> the http request of the underlying framework
+     * @param <R> the http response of the underlying framework
      * @return {@code true} if the path matches and the {@code onMatch} callback returns {@code true} as well
      */
     public static <Q, R> boolean stringSegment(RouteMatchingContext<Q, R> context,
@@ -79,6 +85,8 @@ public class CommonRouteRules {
      * @param context the current matching context
      * @param onMatch callback that will receive all remaining path-segments as well as a sub-context with an empty
      * path
+     * @param <Q> the http request of the underlying framework
+     * @param <R> the http response of the underlying framework
      * @return {@code true} if the path matches and the {@code onMatch} callback returns {@code true} as well
      */
     public static <Q, R> boolean remaining(RouteMatchingContext<Q, R> context,
@@ -97,6 +105,8 @@ public class CommonRouteRules {
      * @param context the current matching context
      * @param method the desired request method
      * @param onMatch callback if the request method matches
+     * @param <Q> the http request of the underlying framework
+     * @param <R> the http response of the underlying framework
      * @return {@code true} if the http request method matches and the {@code onMatch} callback returns {@code true} as
      * well
      */
@@ -115,6 +125,8 @@ public class CommonRouteRules {
      *
      * @param context the current matching context
      * @param name the name of the desired query parameter
+     * @param <Q> the http request of the underlying framework
+     * @param <R> the http response of the underlying framework
      * @return the extracted value of the query parameter
      */
     public static <Q, R> Optional<String> stringQuery(RouteMatchingContext<Q, R> context, String name) {
@@ -127,6 +139,8 @@ public class CommonRouteRules {
      *
      * @param context the current matching context
      * @param name the name of the desired query parameter
+     * @param <Q> the http request of the underlying framework
+     * @param <R> the http response of the underlying framework
      * @return the extracted value of the query parameter
      */
     public static <Q, R> OptionalInt intQuery(RouteMatchingContext<Q, R> context, String name) {

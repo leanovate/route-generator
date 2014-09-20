@@ -9,7 +9,7 @@ package de.leanovate.router;
 public interface Router<Q, R> {
     /**
      * Try to route a request.
-     * <p/>
+     * 
      * Note: If no matching rout is found, this method does not send any kind of response. I.e. you have to send the
      * {@code 404} by yourself.
      *
