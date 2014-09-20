@@ -45,7 +45,7 @@ public class RouteRule {
                 if (pathRoutePattern instanceof SegementRoutePattern) {
                     ((SegementRoutePattern) pathRoutePattern).type = pathActionParameter.type;
                 } else if (pathRoutePattern instanceof RemainingRoutePattern) {
-                    if (!"string".equals(pathActionParameter.type)) {
+                    if (!"string".equalsIgnoreCase(pathActionParameter.type)) {
                         throw new RuntimeException(
                                 "parameter " + pathActionParameter.name + " has to be of type string");
                     }
