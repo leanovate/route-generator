@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.util.Optional;
 
+/**
+ * Adapts a servlet http request/response.
+ */
 public class ServletRequestAdapter implements RequestAdapter<HttpServletRequest, HttpServletResponse> {
     private final HttpServletRequest request;
     private final HttpServletResponse response;

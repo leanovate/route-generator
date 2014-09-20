@@ -24,7 +24,7 @@ public class RouteParserTest {
 
         try (JavaFileBuilder javaFileBuilder =
                      new JavaFileBuilder(new File("./target/testout"), "test", "TestParseSuccess")) {
-            routeRules.build(javaFileBuilder);
+            routeRules.buildRouter(javaFileBuilder);
         }
 
     }

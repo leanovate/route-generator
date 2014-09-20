@@ -6,6 +6,9 @@ import org.vertx.java.core.http.HttpServerResponse;
 
 import java.util.Optional;
 
+/**
+ * Adapts the Vert.X variant of a http request/response.
+ */
 public class VertxServerRequestAdapter implements RequestAdapter<HttpServerRequest, HttpServerResponse> {
     private final HttpServerRequest request;
 

@@ -53,7 +53,7 @@ public class RouterGeneratorMojo extends AbstractMojo {
                 RouteRules routeRules = RouteParser.parse(new String(Files.readAllBytes(routesFile.toPath()), "UTF-8"));
                 String className = JavaFileBuilder.makeClassName(routesFile.getName());
                 try (JavaFileBuilder javaFileBuilder = new JavaFileBuilder(output, routeRules.packageName, className)) {
-                    routeRules.build(javaFileBuilder);
+                    routeRules.buildRouter(javaFileBuilder);
                 }
             }
         } catch (IOException e) {

@@ -11,7 +11,7 @@ import java.io.File;
 import java.nio.file.Files;
 
 public class GenerateRoutesTask extends SourceTask {
-    private File out = getProject().file("build/generated-src/routes");
+    private File out = getProject().file("buildRouter/generated-src/routes");
 
     @TaskAction
     public void invokeGenerate() throws Exception {
@@ -20,7 +20,7 @@ public class GenerateRoutesTask extends SourceTask {
             RouteRules routeRules = RouteParser.parse(new String(Files.readAllBytes(routesFile.toPath()), "UTF-8"));
             String className = JavaFileBuilder.makeClassName(routesFile.getName());
             try (JavaFileBuilder javaFileBuilder = new JavaFileBuilder(out, routeRules.packageName, className)) {
-                routeRules.build(javaFileBuilder);
+                routeRules.buildRouter(javaFileBuilder);
             }
         }
     }

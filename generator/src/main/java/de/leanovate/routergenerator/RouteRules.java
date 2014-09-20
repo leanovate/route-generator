@@ -46,7 +46,7 @@ public class RouteRules {
         }
     }
 
-    public void build(final JavaFileBuilder javaFileBuilder) {
+    public void buildRouter(final JavaFileBuilder javaFileBuilder) {
 
         javaFileBuilder.addImport("de.leanovate.router.RouteMatchingContext");
         javaFileBuilder.addImport("de.leanovate.router.Router");

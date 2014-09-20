@@ -5,7 +5,19 @@ import java.util.OptionalInt;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
+/**
+ * Set of commonly used matching rules.
+ */
 public class CommonRouteRules {
+    /**
+     * Match a specific prefix of a path.
+     *
+     * @param context the current matching context
+     * @param prefix the prefix to match
+     * @param onMatch callback if the prefix is matched, the callback will receive a sub-context without the matched
+     * prefix
+     * @return {@code true} if the path matches the prefix and the {@code onMatch} callback returns {@code true} as well
+     */
     public static <Q, R> boolean prefix(RouteMatchingContext<Q, R> context, String prefix,
             Function<RouteMatchingContext<Q, R>, Boolean> onMatch) {
 
@@ -16,6 +28,14 @@ public class CommonRouteRules {
         }
     }
 
+    /**
+     * Matches if the path does not have any more path-segments.
+     *
+     * @param context the current matching context
+     * @param onMatch callback if the path does not contain any more segments, the callback will receive a sub-context
+     * with an empty path
+     * @return {@code true} if the path matches and the {@code onMatch} callback returns {@code true} as well
+     */
     public static <Q, R> boolean end(RouteMatchingContext<Q, R> context,
             Function<RouteMatchingContext<Q, R>, Boolean> onMatch) {
 
@@ -26,6 +46,14 @@ public class CommonRouteRules {
         }
     }
 
+    /**
+     * Matches a generic string-valued non-empty path-segment.
+     *
+     * @param context the current matching context
+     * @param onMatch callback if the path contains a non-empty path-segment, the callback will receive the extracted
+     * string-value as well a context without the matched segment
+     * @return {@code true} if the path matches and the {@code onMatch} callback returns {@code true} as well
+     */
     public static <Q, R> boolean stringSegment(RouteMatchingContext<Q, R> context,
             BiFunction<RouteMatchingContext<Q, R>, String, Boolean> onMatch) {
 
@@ -45,6 +73,14 @@ public class CommonRouteRules {
         }
     }
 
+    /**
+     * Matches all remaining path-segments
+     *
+     * @param context the current matching context
+     * @param onMatch callback that will receive all remaining path-segments as well as a sub-context with an empty
+     * path
+     * @return {@code true} if the path matches and the {@code onMatch} callback returns {@code true} as well
+     */
     public static <Q, R> boolean remaining(RouteMatchingContext<Q, R> context,
             BiFunction<RouteMatchingContext<Q, R>, String, Boolean> onMatch) {
 
@@ -55,6 +91,15 @@ public class CommonRouteRules {
         }
     }
 
+    /**
+     * Matches a specific http request method.
+     *
+     * @param context the current matching context
+     * @param method the desired request method
+     * @param onMatch callback if the request method matches
+     * @return {@code true} if the http request method matches and the {@code onMatch} callback returns {@code true} as
+     * well
+     */
     public static <Q, R> boolean method(RouteMatchingContext<Q, R> context, String method,
             Function<RouteMatchingContext<Q, R>, Boolean> onMatch) {
 
@@ -65,11 +110,25 @@ public class CommonRouteRules {
         }
     }
 
+    /**
+     * Extract an optional string-valued query parameter.
+     *
+     * @param context the current matching context
+     * @param name the name of the desired query parameter
+     * @return the extracted value of the query parameter
+     */
     public static <Q, R> Optional<String> stringQuery(RouteMatchingContext<Q, R> context, String name) {
 
         return context.getQueryParam(name);
     }
 
+    /**
+     * Extract an optional integer-valued query parameter.
+     *
+     * @param context the current matching context
+     * @param name the name of the desired query parameter
+     * @return the extracted value of the query parameter
+     */
     public static <Q, R> OptionalInt intQuery(RouteMatchingContext<Q, R> context, String name) {
 
         return context.getQueryParam(name)
