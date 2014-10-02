@@ -186,7 +186,7 @@ public class RouteRules {
             List<String> parameters = controllerAction.parameters.stream().filter(ActionParameter::isReverseParameter)
                     .map(ActionParameter::getReverseParameter)
                     .collect(Collectors.toList());
-            classBuilder.publicMethod("String", controllerAction.method, parameters, (body) -> {
+            classBuilder.publicStaticMethod("String", controllerAction.method, parameters, (body) -> {
                 body.writeLine("return new UriBuilder()");
                 body.ident((uriParts) -> {
                     pathRoutePatterns.forEach((pathRoutePattern) -> pathRoutePattern.toUriBuilder(uriParts));

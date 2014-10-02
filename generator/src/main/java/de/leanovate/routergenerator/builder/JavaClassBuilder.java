@@ -20,6 +20,15 @@ public class JavaClassBuilder extends IdentBuilder {
         writeLine("}");
     }
 
+    public void publicStaticMethod(final String returnType, final String name, final List<String> parameters,
+            Consumer<JavaMethodBuilder> body) {
+
+        out.println();
+        writeLine(String.format("public static %s %s(%s) {", returnType, name, String.join(", ", parameters)));
+        body.accept(new JavaMethodBuilder(out, ident + DEFAULT_IDENT));
+        writeLine("}");
+    }
+
     public void protectedAbstractMethod(final String returnType, final String name, final List<String> parameters) {
 
         out.println();
